@@ -19,14 +19,14 @@ hl.curve("myBezier", {
 hl.animation({
     leaf = "windows",
     enabled = true,
-    speed = 7,
+    speed = 5,
     bezier = "myBezier",
 })
 
 hl.animation({
     leaf = "windowsOut",
     enabled = true,
-    speed = 7,
+    speed = 5,
     bezier = "default",
     style = "popin 80%",
 })
@@ -52,10 +52,33 @@ hl.animation({
     bezier = "default",
 })
 
+hl.curve("workspaceSpring", {
+    type = "spring",
+    mass = 1,
+    stiffness = 100,
+    dampening = 15,
+})
+
 hl.animation({
     leaf = "workspaces",
     enabled = true,
-    speed = 6,
-    bezier = "default",
+    speed = 5,
+    spring = "workspaceSpring",
     style = "slidevert",
 })
+
+-- hl.animation({
+--     leaf = "workspaces",
+--     enabled = true,
+--     speed = 5,
+--     bezier = "default",
+--     style = "slidevert",
+-- })
+
+-- Force a strict 3-finger vertical swipe to navigate workspaces
+hl.gesture({
+    fingers = 3,
+    direction = "vertical",
+    action = "workspace"
+})
+
